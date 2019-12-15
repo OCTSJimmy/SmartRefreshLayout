@@ -1,23 +1,8 @@
 package com.scwang.smartrefresh.layout.api;
 
-import android.view.View;
-
 /**
  * 滚动边界
- * Created by SCWANG on 2017/7/8.
+ * Created by scwang on 2017/7/8.
  */
-
-public interface ScrollBoundaryDecider {
-    /**
-     * 内容是否可以下拉滚动
-     * @param content 内容视图
-     * @return false 将会触发下拉刷新
-     */
-    boolean canRefresh(View content);
-    /**
-     * 内容是否可以上拉滚动
-     * @param content 内容视图
-     * @return false 将会触发加载更多
-     */
-    boolean canLoadmore(View content);
+public interface ScrollBoundaryDecider extends com.scwang.smart.refresh.layout.listener.ScrollBoundaryDecider {
 }

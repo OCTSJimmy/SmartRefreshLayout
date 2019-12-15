@@ -1,13 +1,13 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.novoda.bintray-release'
+//apply plugin: 'com.novoda.bintray-release'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+
+    compileSdkVersion 28
 
     defaultConfig {
-        minSdkVersion 12
-        targetSdkVersion 25
+        minSdkVersion 16
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -26,19 +26,26 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    testCompile 'junit:junit:4.12'
-    provided 'com.android.support:design:25.3.1'
-}
+    testImplementation 'junit:junit:4.12'
 
-publish {
-    userOrg = 'scwang90'
-    groupId = 'com.scwang.smartrefresh'
-    artifactId = 'SmartRefreshLayout'
-    version = '1.0.3'
-    description = 'An intelligent refresh layout'
-    website = "https://github.com/scwang90/${rootProject.name}"
+    compileOnly 'com.android.support:design:28.0.0'
+    api project(':refresh-layout-kernel')
+    api project(':refresh-footer-ball')
+    api project(':refresh-header-falsify')
+    api project(':refresh-header-radar')
+    api project(':refresh-header-two-level')
+
 }
+//
+//publish {
+//    userOrg = SMART_USER
+//    groupId = 'com.scwang.smartrefresh'
+//    artifactId = 'SmartRefreshLayout'
+//    publishVersion = SMART_VERSION
+//    desc = 'An intelligent refresh layout'
+//    website = "https://github.com/scwang90/${rootProject.name}"
+//}

@@ -32,3 +32,8 @@
   native *** rsn*(...);
   native *** n*(...);
 }
+
+-keep class com.wang.avi.** { *; }
+-keep class com.wang.avi.indicators.** { *; }
+
+-keep class com.scwang.refreshlayout.activity.practice.BannerPracticeActivity$Movie {*;}

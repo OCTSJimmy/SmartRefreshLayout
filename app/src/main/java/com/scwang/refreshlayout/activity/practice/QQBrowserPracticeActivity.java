@@ -11,6 +11,8 @@ import android.webkit.WebViewClient;
 import com.scwang.refreshlayout.R;
 import com.scwang.refreshlayout.util.StatusBarUtil;
 
+import ezy.ui.layout.LoadingLayout;
+
 /**
  * QQ浏览器-Github
  */
@@ -22,7 +24,7 @@ public class QQBrowserPracticeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice_qqbrowser);
 
-        final Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+        final Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -30,14 +32,22 @@ public class QQBrowserPracticeActivity extends AppCompatActivity {
             }
         });
 
-        final WebView webView = (WebView) findViewById(R.id.webView);
+        final LoadingLayout loading = findViewById(R.id.loading);
+
+        final WebView webView = findViewById(R.id.webView);
         webView.loadUrl("https://github.com/scwang90/SmartRefreshLayout");
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient(){
             @Override
+            @SuppressWarnings("deprecation")
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 return true;
+            }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                loading.showContent();
             }
         });
 

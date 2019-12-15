@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.3"
+
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
     defaultConfig {
-        applicationId "com.scwang.refreshlayout"
-        minSdkVersion 15
-        targetSdkVersion 25
+        applicationId "com.scwang.refreshlayout.app"
+        minSdkVersion 16
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -25,8 +27,11 @@ android {
         }
     }
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.debug
+        }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig = signingConfigs.debug
         }
@@ -34,42 +39,48 @@ android {
     lintOptions {
         abortOnError false
     }
+
 }
 
 
 repositories {
     maven { url "https://jitpack.io" }
 }
-
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:support-v4:28.0.0'
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 
-    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
-    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
-    testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+    testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 
-    compile project(':refresh-footer')
-    compile project(':refresh-header')
-    compile project(':refresh-layout')
+//    implementation project(':refresh-footer')
+    implementation project(':refresh-header')
+    implementation project(':refresh-layout')
+//    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-32'
+//    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-alpha-32'
 
-    compile 'com.android.support:cardview-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.android.support:design:25.3.1'
-    compile 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
-    compile 'com.github.mmin18:realtimeblurview:1.0.6'
-    compile 'com.youth.banner:banner:1.4.9'  //最新版本
-    compile 'de.hdodenhof:circleimageview:2.1.0'
-    compile 'jp.wasabeef:recyclerview-animators:2.2.6'
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
-//    compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
-//    compile 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
-    testCompile 'junit:junit:4.12'
 
-    compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.github.bumptech.glide:glide:4.0.0-RC1'
-//    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC1'
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:cardview-v7:28.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    implementation 'com.flyco.roundview:FlycoRoundView_Lib:1.1.4@aar'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
+    implementation 'com.github.czy1121:loadinglayout:1.0.1'
+    implementation 'com.github.mmin18:realtimeblurview:1.0.6'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.google.android:flexbox:1.0.0'
+    implementation 'com.wang.avi:library:2.1.3'
+    implementation 'com.youth.banner:banner:1.4.10'  //最新版本
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'jp.wasabeef:recyclerview-animators:2.2.6'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.3'
+    testImplementation 'junit:junit:4.12'
+
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
 }
